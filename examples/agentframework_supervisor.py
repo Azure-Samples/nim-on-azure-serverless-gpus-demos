@@ -17,11 +17,6 @@ logger = logging.getLogger("supervisor_demo")
 
 load_dotenv(override=True)
 
-# Setup logging with rich
-logging.basicConfig(level=logging.WARNING, format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
-logger = logging.getLogger("weekend_planner")
-logger.setLevel(logging.INFO)
-
 client = OpenAIResponsesClient(
     base_url=os.environ["NIM_ENDPOINT"],
     api_key="none",
