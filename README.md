@@ -101,7 +101,7 @@ These examples use NIM with the [openai package](https://pypi.org/project/openai
 
 ### Agent Framework
 
-These examples use NIM with the [Agent Framework Pythonpackage](https://learn.microsoft.com/agent-framework/).
+These examples use NIM with the [Agent Framework Python package](https://learn.microsoft.com/agent-framework/).
 
 | Example Script | Description |
 |-----------------------------|---------------------------------------------------------------|
