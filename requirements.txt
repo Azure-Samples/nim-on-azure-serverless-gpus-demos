@@ -5,8 +5,7 @@ pydantic
 rich
 aiohttp
 openai-agents
-git+https://github.com/microsoft/agent-framework.git@main#subdirectory=python/packages/core
-agent-framework-azure-ai
+agent-framework
 opentelemetry-api
 opentelemetry-sdk
 azure-monitor-opentelemetry
