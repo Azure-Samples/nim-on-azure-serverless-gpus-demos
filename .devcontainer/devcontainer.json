@@ -1,23 +1,16 @@
 {
-    "name": "python-ai-agent-frameworks-demos",
+    "name": "nim-on-azure-serverless-gpus",
     "build": {
         "dockerfile": "Dockerfile",
         "context": ".."
     },
-    "features": {
-        "ghcr.io/azure/azure-dev/azd:latest": {}
-    },
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-python.python",
-                "ms-azuretools.vscode-bicep"
+                "ms-python.python"
             ],
             "python.defaultInterpreterPath": "/usr/local/bin/python"
         }
     },
-    "remoteUser": "vscode",
-    "hostRequirements": {
-        "memory": "8gb"
-    }
+    "remoteUser": "vscode"
 }
