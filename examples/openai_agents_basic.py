@@ -6,7 +6,7 @@ import openai
 from agents import Agent, OpenAIResponsesModel, Runner, set_tracing_disabled
 from dotenv import load_dotenv
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.WARNING)
 # Disable tracing since we're not connected to a supported tracing provider
 set_tracing_disabled(disabled=True)
 

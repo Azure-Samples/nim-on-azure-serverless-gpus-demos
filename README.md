@@ -108,6 +108,7 @@ These examples use NIM with the [Agent Framework Pythonpackage](https://learn.mi
 | `agentframework_tool.py`     | Demonstrates a single-tool agent using Agent Framework and NIM. |
 | `agentframework_tools.py`    | Weekend planner agent with multiple tools using Agent Framework and NIM. |
 | `agentframework_supervisor.py` | Supervisor agent orchestrating sub-agents with Agent Framework and NIM. |
+| `agentframework_mcp_http.py` | Demonstrates using agent with a local MCP HTTP server. Requires running the MCP server (`mcp_server_basic.py`) locally. |
 
 ### OpenAI Agents
 

@@ -11,9 +11,8 @@ from pydantic import Field
 from rich import print
 from rich.logging import RichHandler
 
-# Logging setup
 logging.basicConfig(level=logging.WARNING, format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
-logger = logging.getLogger("supervisor_demo")
+logger = logging.getLogger("multi_agent_assistant")
 
 load_dotenv(override=True)
 
@@ -26,6 +25,7 @@ client = OpenAIResponsesClient(
 # ----------------------------------------------------------------------------------
 # Sub-agent 1 tools: weekend planning
 # ----------------------------------------------------------------------------------
+
 
 def get_weather(
     city: Annotated[str, Field(description="The city to get the weather for.")],
@@ -78,6 +78,7 @@ async def plan_weekend(query: str) -> str:
 # ----------------------------------------------------------------------------------
 # Sub-agent 2 tools: meal planning
 # ----------------------------------------------------------------------------------
+
 
 def find_recipes(
     query: Annotated[str, Field(description="User query or desired meal/ingredient")],

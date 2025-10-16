@@ -17,7 +17,7 @@ from pydantic import BaseModel, Field
 from rich import print
 
 logging.basicConfig(level=logging.WARNING)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("issue_labeler")
 
 # Disable tracing since we're not connected to a supported tracing provider
 set_tracing_disabled(disabled=True)
@@ -38,7 +38,9 @@ mcp_server = MCPServerStreamableHttp(
         "url": "https://api.githubcopilot.com/mcp/",
         "headers": {"Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}"},
     },
-    tool_filter=create_static_tool_filter(allowed_tool_names=["get_issue", "search_code", "search_issues", "list_label"]),
+    tool_filter=create_static_tool_filter(
+        allowed_tool_names=["get_issue", "search_code", "search_issues", "list_label"]
+    ),
 )
 
 
@@ -47,6 +49,7 @@ class LabelOutput(BaseModel):
     title: str = Field(description="Title of the issue")
     label: str = Field(description="Label to apply to the issue")
     reasoning: str = Field(description="Reasoning behind the label decision")
+
 
 agent = Agent(
     name="Issue Labeler",
@@ -60,7 +63,9 @@ agent = Agent(
 async def main() -> None:
     await mcp_server.connect()
 
-    message = "Get issue #2759 from Azure-Samples/azure-search-openai-demo. Decide on the most appropriate label for it."
+    message = (
+        "Get issue #2759 from Azure-Samples/azure-search-openai-demo. Decide on the most appropriate label for it."
+    )
 
     result = await Runner.run(starting_agent=agent, input=message)
 
