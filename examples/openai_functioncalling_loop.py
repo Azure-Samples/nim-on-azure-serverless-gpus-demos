@@ -17,7 +17,7 @@ model_name = os.environ["NIM_MODEL"]
 tools = [
     {
         "type": "function",
-        "name": "get_weather",
+        "name": "lookup_weather",
         "description": "Get current temperature for a given location.",
         "parameters": {
             "type": "object",
@@ -123,21 +123,18 @@ while True:
                     "type": "function_call",
                     "call_id": tool_call.call_id,
                     "name": tool_call.name,
-                    "arguments": tool_call.arguments
+                    "arguments": tool_call.arguments,
+                    "id": tool_call.id,
+                    "status": None
                 })
-                
-                # Map the function call to the actual function
-                function_map = {
-                    "lookup_weather": lookup_weather,
-                    "lookup_movies": lookup_movies,
-                }
+            
                 
                 # Execute the function
-                if tool_call.name in function_map:
+                if tool_call.name in tool_mapping:
                     print(f"\nEXECUTING FUNCTION: {tool_call.name}")
                     
                     # Call the function with the parsed arguments
-                    function_result = function_map[tool_call.name](**args)
+                    function_result = tool_mapping[tool_call.name](**args)
                     print(f"FUNCTION RESULT: {function_result}")
                 else:
                     function_result = f"Error: Function {tool_call.name} not found"
