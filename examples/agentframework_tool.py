@@ -10,12 +10,10 @@ from pydantic import Field
 from rich import print
 from rich.logging import RichHandler
 
-
 load_dotenv(override=True)
 
-# Setup logging with rich
-logging.basicConfig(level=logging.DEBUG, format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
-logger = logging.getLogger("weekend_planner")
+logging.basicConfig(level=logging.WARNING, format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
+logger = logging.getLogger("weather_assistant")
 
 client = OpenAIResponsesClient(
     base_url=os.environ["NIM_ENDPOINT"],
@@ -52,4 +50,5 @@ async def main():
 
 
 if __name__ == "__main__":
+    logger.setLevel(logging.INFO)
     asyncio.run(main())

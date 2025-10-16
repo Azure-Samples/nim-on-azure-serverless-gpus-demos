@@ -4,15 +4,13 @@ import os
 import random
 from datetime import datetime
 
-
 import openai
-from agents import Agent, Runner, function_tool, set_tracing_disabled, OpenAIResponsesModel
+from agents import Agent, OpenAIResponsesModel, Runner, function_tool, set_tracing_disabled
 from dotenv import load_dotenv
 from rich.logging import RichHandler
 
-# Setup logging with rich
 logging.basicConfig(level=logging.WARNING, format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
-logger = logging.getLogger("weekend_planner")
+logger = logging.getLogger("weekend_assistant")
 
 # Disable tracing since we're not connected to a supported tracing provider
 set_tracing_disabled(disabled=True)
@@ -20,6 +18,7 @@ set_tracing_disabled(disabled=True)
 load_dotenv(override=True)
 client = openai.AsyncOpenAI(base_url=os.environ["NIM_ENDPOINT"], api_key="none")
 MODEL_NAME = os.environ["NIM_MODEL"]
+
 
 @function_tool
 def get_weather(city: str) -> str:
@@ -57,7 +56,11 @@ def get_current_date() -> str:
 
 agent = Agent(
     name="Weekend Planner",
-    instructions="You help users plan their weekends and choose the best activities for the given weather. If an activity would be unpleasant in the weather, don't suggest it. Include the date of the weekend in your response.",
+    instructions=(
+        "You help users plan their weekends and choose the best activities for the given weather."
+        "If an activity would be unpleasant in the weather, don't suggest it."
+        "Include the date of the weekend in your response."
+    ),
     tools=[get_weather, get_activities, get_current_date],
     model=OpenAIResponsesModel(model=MODEL_NAME, openai_client=client),
 )
@@ -69,5 +72,5 @@ async def main():
 
 
 if __name__ == "__main__":
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.INFO)
     asyncio.run(main())

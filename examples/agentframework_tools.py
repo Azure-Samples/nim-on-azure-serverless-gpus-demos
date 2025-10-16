@@ -1,8 +1,8 @@
 import asyncio
-from datetime import datetime
 import logging
 import os
 import random
+from datetime import datetime
 from typing import Annotated
 
 from agent_framework.openai import OpenAIResponsesClient
@@ -11,20 +11,16 @@ from pydantic import Field
 from rich import print
 from rich.logging import RichHandler
 
-
 load_dotenv(override=True)
 
-# Setup logging with rich
 logging.basicConfig(level=logging.WARNING, format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
-logger = logging.getLogger("weekend_planner")
-logger.setLevel(logging.INFO)
+logger = logging.getLogger("weekend_assistant")
 
 client = OpenAIResponsesClient(
     base_url=os.environ["NIM_ENDPOINT"],
     api_key="none",
     model_id=os.environ["NIM_MODEL"],
 )
-
 
 
 def get_weather(
@@ -78,4 +74,5 @@ async def main():
 
 
 if __name__ == "__main__":
+    logger.setLevel(logging.INFO)
     asyncio.run(main())

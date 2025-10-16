@@ -1,3 +1,4 @@
+import logging
 import random
 import re
 from dataclasses import dataclass
@@ -10,6 +11,8 @@ from pydantic import Field
 
 app = FastMCP()
 fake = Faker()
+
+logger = logging.getLogger("hotel_mcp_server")
 
 
 @dataclass
@@ -62,6 +65,7 @@ async def suggest_hotels(
     """
     Suggest hotels based on location and dates.
     """
+    logger.info(f"Received hotel search request for location: {location}, check_in: {check_in}, check_out: {check_out}")
     # Validate dates
     check_in_date = validate_iso_date(check_in, "check_in")
     check_out_date = validate_iso_date(check_out, "check_out")
@@ -126,4 +130,5 @@ async def suggest_hotels(
 
 
 if __name__ == "__main__":
+    logger.setLevel(logging.INFO)
     app.run(transport="streamable-http")
