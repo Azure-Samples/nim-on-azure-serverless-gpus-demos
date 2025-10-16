@@ -3,11 +3,12 @@
 [![Open in GitHub Codespaces](https://img.shields.io/static/v1?style=for-the-badge&label=GitHub+Codespaces&message=Open&color=brightgreen&logo=github)](https://codespaces.new/Azure-Samples/python-ai-agent-frameworks-demos)
 [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/Azure-Samples/python-ai-agent-frameworks-demos)
 
+
 ## Purpose
 
-This repository demonstrates how to use a variety of popular Python AI agent frameworks with **NIM models running on Azure Serverless GPUs**. The examples show how to integrate these frameworks with NIM endpoints, enabling scalable, cost-effective, and high-performance AI workloads on Azure.
+This repository demonstrates how to use the **OpenAI and OpenAI Agents Python frameworks** with NIM models running on Azure Serverless GPUs. The examples show how to integrate these frameworks with NIM endpoints, enabling scalable, cost-effective, and high-performance AI workloads on Azure.
 
-Whether you're interested in LangChain, OpenAI Agents, PydanticAI, or other frameworks, these samples will help you connect your agents to NIM models deployed on Azure's serverless GPU infrastructure.
+Currently, only the OpenAI and OpenAI Agents examples are fully working and maintained in this repository.
 
 ## Getting Started
 
@@ -15,9 +16,23 @@ You can run these examples in GitHub Codespaces, VS Code Dev Containers, or loca
 
 See the sections below for setup instructions.
 
+
 ## Running the Python Examples
 
-Each script in the `examples` directory demonstrates a different agent pattern or framework, all designed to work with NIM models on Azure Serverless GPUs.
+Each script in the `examples` directory demonstrates a different agent pattern using OpenAI or OpenAI Agents, all designed to work with NIM models on Azure Serverless GPUs.
+
+### Working Examples
+
+| Example Script | Description |
+|---------------|------------|
+| `openai_agents_basic.py` | Basic usage of OpenAI Agents with a NIM endpoint. |
+| `openai_agents_handoffs.py` | Demonstrates agent handoff between multiple OpenAI Agents using NIM. |
+| `openai_agents_mcp_github.py` | Shows how to use OpenAI Agents with MCP GitHub integration and NIM. |
+| `openai_agents_mcp_http.py` | Uses OpenAI Agents with MCP HTTP tools and NIM endpoint. |
+| `openai_agents_tools.py` | Builds a weekend planner agent with tools using OpenAI Agents and NIM. |
+| `openai_functioncalling.py` | Demonstrates OpenAI function calling with NIM endpoint. |
+| `openai_reasoning.py` | Example of reasoning and tool use with OpenAI Agents and NIM. |
+| `openai_responses.py` | Shows response handling with OpenAI Agents and NIM. |
 
 ## Using NIM Models on Azure Serverless GPUs
 
@@ -37,14 +52,13 @@ This project includes infrastructure as code (IaC) to provision NIM model deploy
 
 See the [Provisioning Azure AI resources](#provisioning-azure-ai-resources) section for step-by-step instructions.
 
+
 ## Resources
 
 * [NIM on Azure Documentation](https://learn.microsoft.com/en-us/azure/ai-services/nim/)
-* [AutoGen Documentation](https://microsoft.github.io/autogen/)
-* [LangChain Documentation](https://python.langchain.com/)
 * [OpenAI Agents Documentation](https://openai.github.io/openai-agents-python/)
-* [PydanticAI Documentation](https://ai.pydantic.dev/multi-agent-applications/)
-* [SmolAgents Documentation](https://huggingface.co/docs/smolagents/index)
+* [OpenAI Python API Documentation](https://platform.openai.com/docs/guides/python)
+* [Provisioning NIM on Azure Serverless GPUs](https://learn.microsoft.com/azure/container-apps/serverless-gpu-nim?tabs=bash)
 
 ---
 
