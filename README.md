@@ -105,10 +105,11 @@ These examples use NIM with the [Agent Framework Python package](https://learn.m
 
 | Example Script | Description |
 |-----------------------------|---------------------------------------------------------------|
-| `agentframework_tool.py`     | Demonstrates a single-tool agent using Agent Framework and NIM. |
+| `agentframework_tool.py`     | Single-tool agent using Agent Framework and NIM. |
 | `agentframework_tools.py`    | Weekend planner agent with multiple tools using Agent Framework and NIM. |
 | `agentframework_supervisor.py` | Supervisor agent orchestrating sub-agents with Agent Framework and NIM. |
-| `agentframework_mcp_http.py` | Demonstrates using agent with a local MCP HTTP server. Requires running the MCP server (`mcp_server_basic.py`) locally. |
+| `agentframework_mcp_http.py` | Agent with a local MCP HTTP server. Requires running the MCP server (`mcp_server_basic.py`) locally. |
+| `agentframework_mcp_learn.py` | Agent with access to hosted MCP Learn server. Optional observability with Azure Monitor. |
 
 ### OpenAI Agents
 
