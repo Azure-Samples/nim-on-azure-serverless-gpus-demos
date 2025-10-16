@@ -6,3 +6,10 @@ rich
 aiohttp
 openai-agents
 git+https://github.com/microsoft/agent-framework.git@main#subdirectory=python/packages/core
+agent-framework-azure-ai
+opentelemetry-api
+opentelemetry-sdk
+azure-monitor-opentelemetry
+azure-monitor-opentelemetry-exporter
+opentelemetry-exporter-otlp-proto-grpc
+opentelemetry-semantic-conventions-ai
