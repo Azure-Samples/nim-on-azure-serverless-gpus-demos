@@ -9,7 +9,7 @@ import asyncio
 import logging
 import os
 
-from agent_framework import MCPStreamableHTTPTool
+from agent_framework import ChatAgent, MCPStreamableHTTPTool
 from agent_framework.openai import OpenAIResponsesClient
 from dotenv import load_dotenv
 from rich import print
@@ -30,8 +30,8 @@ async def main():
     async with MCPStreamableHTTPTool(
         name="hotels", description="Provides tools for hotel search", url="http://localhost:8000/mcp/"
     ) as mcp_server:
-        agent = client.create_agent(
-            name="Assistant", instructions="Use the tools to achieve the task", tools=mcp_server
+        agent = ChatAgent(
+            chat_client=client, name="Assistant", instructions="Use the tools to achieve the task", tools=mcp_server
         )
 
         message = (

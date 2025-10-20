@@ -4,6 +4,7 @@ import os
 import random
 from typing import Annotated
 
+from agent_framework import ChatAgent
 from agent_framework.openai import OpenAIResponsesClient
 from dotenv import load_dotenv
 from pydantic import Field
@@ -39,8 +40,8 @@ def get_weather(
         }
 
 
-agent = client.create_agent(
-    instructions="You're an informational agent. Answer questions cheerfully.", tools=[get_weather]
+agent = ChatAgent(
+    chat_client=client, instructions="You're an informational agent. Answer questions cheerfully.", tools=[get_weather]
 )
 
 

@@ -8,7 +8,7 @@ import asyncio
 import logging
 import os
 
-from agent_framework import MCPStreamableHTTPTool
+from agent_framework import ChatAgent, MCPStreamableHTTPTool
 from agent_framework.observability import setup_observability
 from agent_framework.openai import OpenAIResponsesClient
 from dotenv import load_dotenv
@@ -31,8 +31,8 @@ async def main():
     async with MCPStreamableHTTPTool(
         name="learn", description="Search documentation from Microsoft Learn", url="https://learn.microsoft.com/api/mcp"
     ) as mcp_server:
-        agent = client.create_agent(
-            name="Assistant", instructions="Use the tools to achieve the task", tools=mcp_server
+        agent = ChatAgent(
+            chat_client=client, name="Assistant", instructions="Use the tools to achieve the task", tools=mcp_server
         )
 
         message = "Does Azure offer serverless GPUs?"
