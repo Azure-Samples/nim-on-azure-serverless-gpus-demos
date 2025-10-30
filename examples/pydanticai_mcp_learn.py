@@ -16,14 +16,22 @@ from typing import Any
 from dotenv import load_dotenv
 from openai import AsyncOpenAI
 from pydantic import BaseModel, Field
-from pydantic_ai import Agent, RunContext
+from pydantic_ai import Agent, NativeOutput, RunContext
 from pydantic_ai.mcp import CallToolFunc, MCPServerStreamableHTTP, ToolResult
 from pydantic_ai.models.openai import OpenAIResponsesModel
 from pydantic_ai.profiles.openai import OpenAIModelProfile
 from pydantic_ai.providers.openai import OpenAIProvider
+from rich.console import Console
+from rich.logging import RichHandler
+from rich.markdown import Markdown
 
 # Setup the OpenAI client to use either Azure OpenAI or GitHub Models
 load_dotenv(override=True)
+
+logging.basicConfig(level=logging.WARNING, format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
 API_HOST = os.getenv("API_HOST", "github")
 
 client = AsyncOpenAI(base_url=os.environ["NIM_ENDPOINT"], api_key="none")
@@ -43,34 +51,41 @@ async def process_tool_call(
     name: str,
     tool_args: dict[str, Any],
 ) -> ToolResult:
-    """A tool call processor that passes along the deps."""
-    logging.info(f"Processing tool call to {name} with args {tool_args} and deps {ctx.deps}")
+    logger.info(f"Processing tool call to {name} with args {tool_args}")
     return await call_tool(name, tool_args, {"deps": ctx.deps})
 
 
 server = MCPServerStreamableHTTP(url="https://learn.microsoft.com/api/mcp", process_tool_call=process_tool_call)
 
 
+class Citation(BaseModel):
+    """Citation model."""
+    url: str = Field(description="The URL of the citation.")
+    title: str = Field(description="The title of the citation.")
+
 class Answer(BaseModel):
     """Answer with citations."""
-
     answer: str = Field(description="The answer to the user's question.")
-    citations: list[str] = Field(description="List of URLs used as citations for the answer.")
+    citations: list[Citation] = Field(description="List of citations for the answer.")
 
 
-agent: Agent[None, str] = Agent(
+agent = Agent(
     model,
-    system_prompt="Use the tools to answer the question and provide citations.",
+    system_prompt="Use tools to answer question. Your answer should be in markdown and include citations.",
     toolsets=[server],
-    # output_type=NativeOutput(Answer)
+    output_type=NativeOutput(Answer)
 )
-
 
 async def main():
     result = await agent.run("Does Azure offer serverless GPUs?")
-    print(result.output)
+    
+    console = Console()
+    console.print(Markdown(result.output.answer))
+    citations_md = "\n\n## Citations\n\n" + "\n".join(
+        f"- [{citation.title}]({citation.url})" for citation in result.output.citations
+    )
+    console.print(Markdown(citations_md))
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.WARNING)
     asyncio.run(main())

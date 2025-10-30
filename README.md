@@ -79,7 +79,7 @@ To provision NIM models on Azure and obtain endpoint details, follow this tutori
 
 Create a `.env` file by copying the provided `.env.sample`, then fill in the required variables:
 
-```
+```shell
 NIM_ENDPOINT=https://ENDPOINT.azurecontainerapps.io/v1/
 NIM_MODEL=
 ```
@@ -94,10 +94,10 @@ These examples use NIM with the [openai package](https://pypi.org/project/openai
 
 | Example Script | Description |
 |----------------|-------------|
-| `openai_responses.py` | Calls model using the Responses API. |
-| `openai_reasoning.py` | Calls model with reasoning effort and displays reasoning tokens. |
-| `openai_functioncalling.py` | Calls model with function calling and single function definition. |
-| `openai_functioncalling_loop.py` | Calls model with multiple function calling definitions, and executes calls in a loop until complete. |
+| [`openai_responses.py`](examples/openai_responses.py) | Calls model using the Responses API. |
+| [`openai_reasoning.py`](examples/openai_reasoning.py) | Calls model with reasoning effort and displays reasoning tokens. |
+| [`openai_functioncalling.py`](examples/openai_functioncalling.py) | Calls model with function calling and single function definition. |
+| [`openai_functioncalling_loop.py`](examples/openai_functioncalling_loop.py) | Calls model with multiple function calling definitions, and executes calls in a loop until complete. |
 
 ### Agent Framework
 
@@ -105,11 +105,11 @@ These examples use NIM with the [Agent Framework Python package](https://learn.m
 
 | Example Script | Description |
 |-----------------------------|---------------------------------------------------------------|
-| `agentframework_tool.py`     | Single-tool agent using Agent Framework and NIM. |
-| `agentframework_tools.py`    | Weekend planner agent with multiple tools using Agent Framework and NIM. |
-| `agentframework_supervisor.py` | Supervisor agent orchestrating sub-agents with Agent Framework and NIM. |
-| `agentframework_mcp_http.py` | Agent with a local MCP HTTP server. Requires running the MCP server (`mcp_server_basic.py`) locally. |
-| `agentframework_mcp_learn.py` | Agent with access to hosted MCP Learn server. Optional observability with Azure Monitor. |
+| [`agentframework_tool.py`](examples/agentframework_tool.py)     | Single-tool agent using Agent Framework and NIM. |
+| [`agentframework_tools.py`](examples/agentframework_tools.py)    | Weekend planner agent with multiple tools using Agent Framework and NIM. |
+| [`agentframework_supervisor.py`](examples/agentframework_supervisor.py) | Supervisor agent orchestrating sub-agents with Agent Framework and NIM. |
+| [`agentframework_mcp_http.py`](examples/agentframework_mcp_http.py) | Agent with a local MCP HTTP server. Requires running the MCP server ([`mcp_server_basic.py`](examples/mcp_server_basic.py)) locally. |
+| [`agentframework_mcp_learn.py`](examples/agentframework_mcp_learn.py) | Agent with access to hosted MCP Learn server. Optional observability with Azure Monitor. |
 
 ### OpenAI Agents
 
@@ -117,7 +117,18 @@ These examples use NIM with the [OpenAI Agents package](https://openai.github.io
 
 | Example Script | Description |
 |---------------|------------|
-| `openai_agents_basic.py` | Calls agent with no tools. |
-| `openai_agents_tools.py` | Builds a weekend planner agent with tools. |
-| `openai_agents_mcp_http.py` | Builds a hotel booking agent using a local HTTP MCP server. |
-| `openai_agents_mcp_github.py` | Builds an issue triaging agent using the GitHub MCP server. |
+| [`openai_agents_basic.py`](examples/openai_agents_basic.py) | Calls agent with no tools. |
+| [`openai_agents_tools.py`](examples/openai_agents_tools.py) | Builds a weekend planner agent with tools. |
+| [`openai_agents_mcp_http.py`](examples/openai_agents_mcp_http.py) | Builds a hotel booking agent using a local HTTP MCP server. |
+| [`openai_agents_mcp_github.py`](examples/openai_agents_mcp_github.py) | Builds an issue triaging agent using the GitHub MCP server. |
+
+### PydanticAI
+
+These examples use NIM with the [PydanticAI package](https://ai.pydantic.dev/).
+
+| Example Script | Description |
+|---------------|------------|
+| [`pydanticai_tools.py`](examples/pydanticai_tools.py) | Weekend planner agent with multiple tools using PydanticAI and NIM. |
+| [`pydanticai_supervisor.py`](examples/pydanticai_supervisor.py) | Supervisor agent orchestrating weekend planning and meal planning sub-agents with PydanticAI and NIM. |
+| [`pydanticai_mcp_http.py`](examples/pydanticai_mcp_http.py) | Agent with a local MCP HTTP server. Requires running the MCP server ([`mcp_server_basic.py`](examples/mcp_server_basic.py)) locally. |
+| [`pydanticai_mcp_learn.py`](examples/pydanticai_mcp_learn.py) | Agent with access to hosted MCP Learn server for answering questions about Microsoft/Azure documentation. |

@@ -13,3 +13,4 @@ azure-monitor-opentelemetry-exporter
 opentelemetry-exporter-otlp-proto-grpc
 opentelemetry-semantic-conventions-ai
 pydantic-ai==1.9.0
+faker
