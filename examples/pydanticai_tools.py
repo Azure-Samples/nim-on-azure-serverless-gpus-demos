@@ -10,7 +10,9 @@ from pydantic_ai import Agent
 from pydantic_ai.models.openai import OpenAIResponsesModel
 from pydantic_ai.profiles.openai import OpenAIModelProfile
 from pydantic_ai.providers.openai import OpenAIProvider
+from rich.console import Console
 from rich.logging import RichHandler
+from rich.markdown import Markdown
 
 load_dotenv(override=True)
 logging.basicConfig(level=logging.WARNING, format="%(message)s", datefmt="[%X]", handlers=[RichHandler()])
@@ -73,7 +75,8 @@ agent = Agent(
 
 async def main():
     result = await agent.run("what can I do for funzies this weekend in Seattle?")
-    print(result.output)
+    console = Console()
+    console.print(Markdown(result.output))
 
 
 if __name__ == "__main__":
