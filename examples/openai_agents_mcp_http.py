@@ -20,7 +20,7 @@ set_tracing_disabled(disabled=True)
 
 # Setup the OpenAI client to use either Azure OpenAI or GitHub Models
 load_dotenv(override=True)
-API_HOST = os.getenv("API_HOST", "github")
+
 client = openai.AsyncOpenAI(base_url=os.environ["NIM_ENDPOINT"], api_key="none")
 MODEL_NAME = os.environ["NIM_MODEL"]
 

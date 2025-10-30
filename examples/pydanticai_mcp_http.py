@@ -19,7 +19,6 @@ from pydantic_ai.providers.openai import OpenAIProvider
 
 # Setup the OpenAI client to use either Azure OpenAI or GitHub Models
 load_dotenv(override=True)
-API_HOST = os.getenv("API_HOST", "github")
 
 client = AsyncOpenAI(base_url=os.environ["NIM_ENDPOINT"], api_key="none")
 

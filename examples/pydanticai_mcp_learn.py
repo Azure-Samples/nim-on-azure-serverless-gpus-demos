@@ -32,8 +32,6 @@ logging.basicConfig(level=logging.WARNING, format="%(message)s", datefmt="[%X]",
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-API_HOST = os.getenv("API_HOST", "github")
-
 client = AsyncOpenAI(base_url=os.environ["NIM_ENDPOINT"], api_key="none")
 
 model = OpenAIResponsesModel(
@@ -71,7 +69,7 @@ class Answer(BaseModel):
 
 agent = Agent(
     model,
-    system_prompt="Use tools to answer question. Your answer should be in markdown and include citations.",
+    system_prompt="Use tools to answer question. Your answer should be in markdown (lists, headings, tables, quotes, etc) and include citations.",
     toolsets=[server],
     output_type=NativeOutput(Answer)
 )
