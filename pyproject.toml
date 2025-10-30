@@ -3,11 +3,3 @@ line-length = 120
 target-version = "py310"
 lint.select = ["E", "F", "I", "UP"]
 lint.ignore = ["D203"]
-
-[tool.uv.sources]
-pydantic-ai = { git = "https://github.com/pydantic/pydantic-ai.git", branch = "responses-function-call-status" }
-
-[dependency-groups]
-dev = [
-    "pydantic-ai",
-]
