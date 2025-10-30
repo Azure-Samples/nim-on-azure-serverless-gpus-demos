@@ -5,10 +5,11 @@ pydantic
 rich
 aiohttp
 openai-agents
-agent-framework
+agent-framework==1.0.0b251028
 opentelemetry-api
 opentelemetry-sdk
 azure-monitor-opentelemetry
 azure-monitor-opentelemetry-exporter
 opentelemetry-exporter-otlp-proto-grpc
 opentelemetry-semantic-conventions-ai
+pydantic-ai==1.9.0
